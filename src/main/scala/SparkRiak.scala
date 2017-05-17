@@ -31,8 +31,8 @@
 
 
 
-object HelloWorld {
+object SparkRiak {
     def main(args: Array[String]): Unit = {
-        println("Hello, world!")
+        println("spark riak!!!")
     }
 }
