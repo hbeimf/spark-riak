@@ -1,4 +1,4 @@
-add deps 
+add deps
 
 http://mvnrepository.com/
 
@@ -7,9 +7,9 @@ search groupId/artifactId/version
 
 打包应用:
 
-	$ sbt package 
+	$ sbt package
 	$ ll ./target/scala-2.12/
-	
+
 	print like this
 	/helloWorld$ ll ./target/scala-2.12/
 	drwxrwxr-x 3 xxx xxx 4096  5月 16 13:58 ./
@@ -20,10 +20,10 @@ search groupId/artifactId/version
 
 启动 spark:
 
-	$ ./sbin/start-master.sh
+	$ ./sbin/start-master.sh -h 127.0.0.1
 
 启动 riak:
-	
+
 	$ sudo riak start
 
 
