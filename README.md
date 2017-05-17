@@ -33,6 +33,27 @@ sbt package
 
 	$ ./sbin/start-master.sh
 
+启动　riak
+	
+	$ sudo riak start
 
+
+submit:
+
+	./bin/spark-submit \
+
+	--class<main-class>
+
+	--master <master-url> \
+
+	--deploy-mode <deploy-mode> \
+
+	--conf<key>=<value> \
+
+	... #other options
+
+	<application-jar> \
+
+	[application-arguments]
 
 
