@@ -17,7 +17,8 @@ object SparkRiak {
         .set("spark.riak.connections.min", "20")
         .set("spark.riak.connections.max", "50")
 
-        val sc = new SparkContext("spark://127.0.0.1:7077", "SparkRiakDemo", conf)
+        val taskName = "SparkRiak"
+        val sc = new SparkContext("spark://127.0.0.1:7077", taskName, conf)
 
         // val kv_bucket_name = "test-data"
         // val data = sc.riakBucket[String](kv_bucket_name).queryAll()
