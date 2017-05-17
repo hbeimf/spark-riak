@@ -4,19 +4,8 @@ http://mvnrepository.com/
 
 search groupId/artifactId/version
 
-run demo
 
-	$ sbt run
-
-	print like this
-	[info] Loading project definition from /web/helloWorld/project
-	[info] Set current project to helloWorld (in build file:/web/helloWorld/)
-	[info] Running HelloWorld 
-	Hello, world!
-	[success] Total time: 0 s, completed 2017-5-16 10:55:19
-
-
-sbt package
+打包应用:
 
 	$ sbt package 
 	$ ll ./target/scala-2.12/
@@ -29,11 +18,11 @@ sbt package
 	-rw-rw-r-- 1 xxx xxx 1819  5月 16 13:58 helloworld_2.12-0.0.1.jar
 
 
-启动 spark
+启动 spark:
 
 	$ ./sbin/start-master.sh
 
-启动　riak
+启动 riak:
 	
 	$ sudo riak start
 
