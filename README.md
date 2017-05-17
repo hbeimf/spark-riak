@@ -21,6 +21,8 @@ search groupId/artifactId/version
 启动 spark:
 
 	$ ./sbin/start-master.sh -h 127.0.0.1
+	查看master状态
+	http://localhost:8080/
 
 启动 riak:
 
