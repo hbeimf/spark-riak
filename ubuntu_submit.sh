@@ -39,5 +39,7 @@
   --master spark://127.0.0.1:7077 \
   --executor-memory 2000M \
   --total-executor-cores 100 \
-  /web/spark-riak/target/scala-2.12/spark-riak_2.12-0.0.1.jar
+  /web/spark-riak/target/scala-2.10/spark-riak_2.10-0.0.1.jar
+  
+#/web/spark-riak/target/scala-2.12/spark-riak_2.12-0.0.1.jar
 
