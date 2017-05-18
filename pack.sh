@@ -2,6 +2,7 @@
 
 
 sbt compile
-sbt package
+# sbt package
+sbt assembly
 
 
