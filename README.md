@@ -20,12 +20,15 @@ search groupId/artifactId/version
 
 启动 spark:
 
+	spark-2.1.1-bin-hadoop2.7
+
 	$ ./sbin/start-master.sh -h 127.0.0.1
 	查看master状态
 	http://localhost:8080/
 
 启动 riak:
 
+	riak-ts_1.5.2-1_amd64.deb
 	$ sudo riak start
 
 
