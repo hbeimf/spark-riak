@@ -51,3 +51,8 @@ submit:
 	[application-arguments]
 
 
+
+
+https://segmentfault.com/q/1010000003943723
+
+sbt assembly

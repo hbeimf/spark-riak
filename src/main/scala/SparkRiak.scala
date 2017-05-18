@@ -28,7 +28,7 @@ object SparkRiak {
         // val rdd = sc.riakBucket[String]("bucket1").queryAll()
 
         // rdd.map(_.toUpperCase).saveToRiak("new_bucket")
-
+        println("spark riak!!!")
 
         val rdd = sc.riakBucket[String]("bucket1").queryAll()
 
@@ -53,7 +53,7 @@ object SparkRiak {
         // val output_kv_bucket = "test-bucket"
         // rdd.saveToRiak(output_kv_bucket)
 
-        println("spark riak!!!")
+
 
         sc.stop()
     }
