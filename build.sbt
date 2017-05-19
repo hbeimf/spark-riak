@@ -23,7 +23,7 @@ libraryDependencies += "org.apache.spark" % "spark-core_2.10" % "1.5.0" % "provi
 
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-sql_2.10
-libraryDependencies += "org.apache.spark" % "spark-sql_2.10" % "1.5.0"
+libraryDependencies += "org.apache.spark" % "spark-sql_2.10" % "1.5.0" % "provided"
 
 
 
@@ -39,77 +39,27 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3"
 // sbt-assembly deduplicate
 // sbt-assembly spark deduplicate
 
-//http://www.doc88.com/p-2012378335978.html
-//http://www.itkeyword.com/doc/9483198137802918599/sbt-assembly-error-deduplicate-different-file-contents-found-in-the-following
+mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
+  {
+    //case PathList("org", "slf4j", xs @ _*)         => MergeStrategy.first
+    //case PathList(ps @ _*) if ps.last endsWith "axiom.xml" => MergeStrategy.filterDistinctLines
+    //case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.first
+    //case PathList(ps @ _*) if ps.last endsWith "ILoggerFactory.class" => MergeStrategy.first
 
-// http://blog.csdn.net/xiewenbo/article/details/53573440　
+    case PathList("org", "apache", xs @ _*)         => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "pom.properties" => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "pom.xml" => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "Log.class" => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "Absent.class" => MergeStrategy.last
+    case PathList(ps @ _*) if ps.last endsWith "Function.class" => MergeStrategy.last
 
-// mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-//  {
-//    case PathList("org", "slf4j", xs @ _*)         => MergeStrategy.first
-//    case PathList(ps @ _*) if ps.last endsWith "axiom.xml" => MergeStrategy.filterDistinctLines
-//    case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.first
-//    case PathList(ps @ _*) if ps.last endsWith "ILoggerFactory.class" => MergeStrategy.first
-//    case x => old(x)
-//  }
-//}
-//
-
-
-
-
-
-
-// http://www.tuicool.com/articles/URzmqaB
-
-// build.sbt
-
-// // import sbt.Keys._
-
-// // name := "spark-dse-test"
-
-// // version := "1.0"
-
-// // scalaVersion := "2.10.5"
-
-// // scalacOptions := Seq("-deprecation", "-unchecked", "-feature")
-
-// // libraryDependencies ++= Seq(
-// //   "com.datastax.spark" %% "spark-cassandra-connector" % "1.5.0-M2",
-// //   "org.apache.spark" %% "spark-core" % "1.5.1" % "provided",
-// //   "org.apache.spark" %% "spark-sql" % "1.5.1" % "provided"
-// // )
-
-// // // There is a conflict between Guava versions on Cassandra Drive and Hadoop
-// // // Shading Guava Package
-// // assemblyShadeRules in assembly := Seq(
-// //   ShadeRule.rename("com.google.**" -> "shadeio.@1").inAll
-// // )
-
-// // assemblyJarName in assembly := s"${name.value}-${version.value}.jar"
-
-// // assemblyMergeStrategy in assembly := {
-// //   case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
-// //   case _ => MergeStrategy.first
-// // }
+    case x => old(x)
+  }
+}
 
 
-// mergeStrategy in assembly <<= (mergeStrategy in assembly) { mergeStrategy => {
-// case entry => {
-//   val strategy = mergeStrategy(entry)
-//   if (strategy == MergeStrategy.deduplicate) MergeStrategy.first
-//   else strategy
-// }
-//}}
-//
 
-//https://github.com/sbt/sbt-assembly#merge-strategy
-// http://blog.csdn.net/beautygao/article/details/32306637
-// https://github.com/sbt/sbt-assembly/issues/92
-// https://github.com/sbt/sbt-assembly/issues
 
-//assemblyShadeRules in assembly := Seq(
-//  ShadeRule.rename("com.typesafe.config.**" -> "my_conf.@1")
-//    .inLibrary("com.typesafe" % "config" % "1.3.0")
-//    .inProject
-//)//
+
+
