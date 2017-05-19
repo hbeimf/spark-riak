@@ -27,7 +27,7 @@ libraryDependencies += "org.apache.spark" % "spark-core_2.10" % "1.5.0" % "provi
 
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-sql_2.10
-libraryDependencies += "org.apache.spark" % "spark-sql_2.10" % "1.5.0"
+libraryDependencies += "org.apache.spark" % "spark-sql_2.10" % "1.6.0"
 
 
 
@@ -50,12 +50,12 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3"
 //[error] /home/maomao/.ivy2/cache/org.apache.mesos/mesos/jars/mesos-0.21.1-shaded-protobuf.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
 //[error] /home/maomao/.ivy2/cache/com.basho.riak/riak-client/jars/riak-client-2.0.7.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
 
-assemblyShadeRules in assembly := Seq(
-  ShadeRule.rename("com.google.**" -> "shadeio11.@1").inAll,
-  ShadeRule.rename("com.esotericsoftware.**" -> "shadeio22.@1").inAll,
-  ShadeRule.rename("org.apache.**" -> "shadeio33.@1").inAll
+//assemblyShadeRules in assembly := Seq(
+//  ShadeRule.rename("com.google.**" -> "shadeio11.@1").inAll,
+//  ShadeRule.rename("com.esotericsoftware.**" -> "shadeio22.@1").inAll,
+//  ShadeRule.rename("org.apache.**" -> "shadeio33.@1").inAll
 
-)
+//)
 
 //assemblyShadeRules in assembly := Seq(
 //  ShadeRule.rename("com.google.guava.**" -> "shadeio44.@1").inAll
