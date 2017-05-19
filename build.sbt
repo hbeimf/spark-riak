@@ -1,4 +1,4 @@
-net.virtualvoid.sbt.graph.Plugin.graphSettings
+//net.virtualvoid.sbt.graph.Plugin.graphSettings
 import AssemblyKeys._
 
 assemblySettings
@@ -38,6 +38,22 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3"
 // 冲突解决
 // sbt-assembly deduplicate
 // sbt-assembly spark deduplicate
+
+
+
+//
+//[error] (*:assembly) deduplicate: different file contents found in the following:
+//[error] /home/maomao/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
+//[error] /home/maomao/.ivy2/cache/org.apache.mesos/mesos/jars/mesos-0.21.1-shaded-protobuf.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
+//[error] /home/maomao/.ivy2/cache/com.basho.riak/riak-client/jars/riak-client-2.0.7.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
+
+//assemblyShadeRules in assembly := Seq(
+//    ShadeRule.rename("protobuf-java.**" -> "shadeio.@1").inAll
+//)
+
+
+
+
 
 //mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
   //{
