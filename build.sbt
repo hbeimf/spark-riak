@@ -39,24 +39,25 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3"
 // sbt-assembly deduplicate
 // sbt-assembly spark deduplicate
 
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-  {
+//mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
+  //{
     //case PathList("org", "slf4j", xs @ _*)         => MergeStrategy.first
     //case PathList(ps @ _*) if ps.last endsWith "axiom.xml" => MergeStrategy.filterDistinctLines
     //case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.first
     //case PathList(ps @ _*) if ps.last endsWith "ILoggerFactory.class" => MergeStrategy.first
 
-    case PathList("org", "apache", xs @ _*)         => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "pom.properties" => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "pom.xml" => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "Log.class" => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "Absent.class" => MergeStrategy.last
-    case PathList(ps @ _*) if ps.last endsWith "Function.class" => MergeStrategy.last
+    //case PathList("org", "apache", xs @ _*)         => MergeStrategy.last
 
-    case x => old(x)
-  }
-}
+    //case PathList(ps @ _*) if ps.last endsWith "pom.properties" => MergeStrategy.last
+    //case PathList(ps @ _*) if ps.last endsWith "pom.xml" => MergeStrategy.last
+    //case PathList(ps @ _*) if ps.last endsWith "Log.class" => MergeStrategy.last
+    //case PathList(ps @ _*) if ps.last endsWith "Log$Logger.class" => MergeStrategy.last
+    //case PathList(ps @ _*) if ps.last endsWith "Absent.class" => MergeStrategy.last
+    //case PathList(ps @ _*) if ps.last endsWith "Function.class" => MergeStrategy.last
+
+    //case x => old(x)
+  //}
+//}
 
 
 
