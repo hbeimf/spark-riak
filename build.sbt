@@ -44,19 +44,26 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3"
 // sbt-assembly spark deduplicate
 
 
-
 //
 //[error] (*:assembly) deduplicate: different file contents found in the following:
 //[error] /home/maomao/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
 //[error] /home/maomao/.ivy2/cache/org.apache.mesos/mesos/jars/mesos-0.21.1-shaded-protobuf.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
 //[error] /home/maomao/.ivy2/cache/com.basho.riak/riak-client/jars/riak-client-2.0.7.jar:META-INF/maven/com.google.protobuf/protobuf-java/pom.properties
 
+assemblyShadeRules in assembly := Seq(
+  ShadeRule.rename("com.google.**" -> "shadeio11.@1").inAll,
+  ShadeRule.rename("com.esotericsoftware.**" -> "shadeio22.@1").inAll,
+  ShadeRule.rename("org.apache.**" -> "shadeio33.@1").inAll
+
+)
+
 //assemblyShadeRules in assembly := Seq(
-//    ShadeRule.rename("protobuf-java.**" -> "shadeio.@1").inAll
+//  ShadeRule.rename("com.google.guava.**" -> "shadeio44.@1").inAll
 //)
 
 
 
+assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
 
 
 //mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
