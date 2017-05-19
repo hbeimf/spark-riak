@@ -1,7 +1,7 @@
 //net.virtualvoid.sbt.graph.Plugin.graphSettings
-import AssemblyKeys._
+// import AssemblyKeys._
 
-assemblySettings
+// assemblySettings
 
 name := "spark-riak"      // 项目名称
 
@@ -13,6 +13,10 @@ version := "0.0.1"  // 版本号
 
 //scalaVersion := "2.12.2"   // 使用的Scala版本号
 scalaVersion := "2.10.6"   // 使用的Scala版本号
+
+
+
+
 
 
 
