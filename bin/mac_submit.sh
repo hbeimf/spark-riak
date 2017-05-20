@@ -33,13 +33,13 @@
 # ======================================================
 # http://www.mamicode.com/info-detail-554020.html
 
-# ubuntu
+# mac 
 /usr/local/spark-2.1.1-bin-hadoop2.7/bin/spark-submit \
   --class SparkRiak.SparkRiak \
   --master spark://127.0.0.1:7077 \
   --executor-memory 1000M \
   --total-executor-cores 100 \
-  /web/spark-riak/target/scala-2.12/spark-riak-assembly-0.0.1.jar
+  /web/spark-riak/target/scala-2.10/spark-riak-assembly-0.0.1.jar
 
 
 

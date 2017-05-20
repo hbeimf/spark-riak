@@ -33,9 +33,9 @@ object SparkRiak {
         // val rdd = sc.riakBucket[String]("bucket1").queryAll()
         // rdd.collect().foreach(println)
 
-        val data = Array(1, 2, 3, 4, 5)
-        val testRDD = sc.parallelize(data)
-        testRDD.saveToRiak("kv_bucket_a")
+        // val data = Array(1, 2, 3, 4, 5)
+        // val testRDD = sc.parallelize(data)
+        // testRDD.saveToRiak("kv_bucket_a")
 
 
 
