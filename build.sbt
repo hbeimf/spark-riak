@@ -58,7 +58,7 @@ libraryDependencies += "com.basho.riak" % "spark-riak-connector_2.10" % "1.6.3" 
 
 
 
-//assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
+assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
 
 
 //mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
