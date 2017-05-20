@@ -22,7 +22,7 @@ object SparkRiak {
         // com.basho.riak.spark.rdd.connector.RiakConnector
 
         // val kv_bucket_name = "bucket1"
-        val rdd = sc.riakBucket[String]("bucket1").queryAll()
+        // val rdd = sc.riakBucket[String]("bucket1").queryAll()
         // rdd.collect().foreach(println)
 
         // val rdd = sc.riakBucket[String]("bucket1").queryAll()
