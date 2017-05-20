@@ -8,15 +8,17 @@ import com.basho.riak.spark._
 
 object SparkRiak {
     def main(args: Array[String]): Unit = {
+        val appName = "SparkRiak"
+
         val conf = new SparkConf()
-        .setAppName("SparkRiak")
+        .setAppName(appName)
         .set("spark.riak.connection.host", "127.0.0.1:8087")
         // .set("spark.riak.connection.host", "127.0.0.1")
         .set("spark.riak.connections.min", "20")
         .set("spark.riak.connections.max", "50")
 
-        val taskName = "SparkRiak"
-        val sc = new SparkContext("spark://127.0.0.1:7077", taskName, conf)
+        
+        val sc = new SparkContext("spark://127.0.0.1:7077", appName, conf)
         // val sc = new SparkContext(conf)
 
         // com.basho.riak.spark.rdd.connector.RiakConnector
@@ -31,11 +33,15 @@ object SparkRiak {
         println("spark riak!!!")
 
         // val rdd = sc.riakBucket[String]("bucket1").queryAll()
+        // rdd.map(_.toUpperCase).saveToRiak("new_bucket")
+
+
+        // val rdd = sc.riakBucket[String]("bucket1").queryAll()
         // rdd.collect().foreach(println)
 
-        // val data = Array(1, 2, 3, 4, 5)
-        // val testRDD = sc.parallelize(data)
-        // testRDD.saveToRiak("kv_bucket_a")
+        val data = Array(1, 2, 3, 4, 5)
+        val testRDD = sc.parallelize(data)
+        testRDD.saveToRiak("kv_bucket_a")
 
 
 
