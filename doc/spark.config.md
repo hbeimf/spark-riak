@@ -52,10 +52,10 @@ Snappy压缩库安装
 http://www.xuebuyuan.com/1268888.html
 
 
-cp /web/tar/snappy-1.1.4/.libs/libsnappy.dylib /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/
+sudo cp /web/tar/snappy-1.1.4/.libs/libsnappy.dylib /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/
 
 
-//sudo cp /web/spark-riak/doc/libhadoop.so /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/libhadoop.dylib
+
 
 *****************************************************
 *****************************************************
@@ -66,35 +66,28 @@ cp /web/tar/snappy-1.1.4/.libs/libsnappy.dylib /Library/Java/JavaVirtualMachines
 sudo cp /web/tar/hadoop-2.7.3-src/hadoop-dist/target/hadoop-2.7.3/lib/native/libhadoop.dylib /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/libhadoop.dylib
 
 
+------------------------------------------------------
+cp -R /web/tar/hadoop-2.7.3-src/hadoop-dist/target/hadoop-2.7.3/lib/native /usr/local/hadoop-2.7.3/lib/
+
+cd /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/
+sudo rm -rf libsnappy.dylib
+sudo rm -rf libhadoop.dylib
+
+
+
+
+
+cp /web/tar/snappy-1.1.4/.libs/libsnappy.dylib /usr/local/hadoop-2.7.3/lib/native/
+
 =============================================================================================
 
 编绎hadoop:
 http://www.micmiu.com/bigdata/hadoop/hadoop-build-native-library-on-mac-os-x/
 
 
-svn co https://svn.apache.org/repos/asf/hadoop/common/tags/release-2.2.0/
-
-cd release-2.2.0/
-
-
-
- #切换到hadoop 源码的根目录
-wget https://issues.apache.org/jira/secure/attachment/12617363/HADOOP-9648.v2.patch
-patch -p1 < HADOOP-9648.v2.patch
-
-
-
-
 mvn package -Pdist,native -DskipTests -Dtar
 mvn package -Pdist,native -DskipTests -Dtar -Dmaven.javadoc.skip=true
 
-
-编译通过后可在 <HADOOP源码根目录>/hadoop-dist/target/hadoop-2.2.0/lib/ 目录下看到如下内容：
-
-
-
-$ls -s libhadoop.1.0.0.dylib libhadoop.so 
-$ls -s libhdfs.0.0.0.dylib libhdfs.so
 
 
 ==========================================================================
@@ -128,61 +121,37 @@ http://blog.csdn.net/u010717403/article/details/52188496
 
 ===========================================================================
 
-http://www.cnblogs.com/huaxiaoyao/p/5085511.html
-spark-env.sh 配置示例
+
+********************************************
+刚踏过一个坑，又来了一个，
+
+Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/spark/Logging
 
 
-#spark-env.sh 
+http://blog.csdn.net/u010906369/article/details/52884321
 
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
-SCALA_HOME=/usr/local/scala
-SPARK_HOME=/usr/local/spark-2.1.1-bin-hadoop2.7
-SPARK_PID_DIR=$SPARK_HOME/tmp
-HADOOP_HOME=/usr/local/hadoop-2.7.3
-
-#HADOOP_CONF_DIR=/home/hadoop/app/hadoop/etc/hadoop
-
-SPARK_CLASSPATH=$SPARK_HOME/conf/:$SPARK_HOME/lib/*:$HADOOP_HOME/share/hadoop/common/lib/hadoop-lzo-0.4.19.jar:/home/hadoop/app/hbase/conf:$HADOOP_HOME/lib/native:$SPARK_CLASSPATH
-SPARK_JAVA_OPTS="$SPARK_JAVA_OPTS -Dspark.akka.askTimeout=300 -Dspark.ui.retainedStages=1000 -Dspark.eventLog.enabled=true -Dspark.eventLog.dir=hdfs://sparkcluster/user/spark_history_logs -Dspark.shuffle.spill=false -Dspark.shuffle.manager=hash -Dspark.yarn.max.executor.failures=99999 -Dspark.worker.timeout=300"
-SPARK_LOCAL_DIRS=/data1/hadoop/spark_local_dir,/data2/hadoop/spark_local_dir,/data3/hadoop/spark_local_dir,/data4/hadoop/spark_local_dir,/data5/hadoop/spark_local_dir,/data6/hadoop/spark_local_dir,/data7/hadoop/spark_local_dir,/data8/hadoop/spark_local_dir,/data9/hadoop/spark_local_dir,/data10/hadoop/spark_local_dir
-
-SPARK_MASTER_PORT=4050
-SPARK_WORKER_CORES=30
-SPARK_WORKER_MEMORY=60g
-SPARK_WORKER_INSTANCES=6
-SPARK_DRIVER_MEMORY=12g
-SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=spark1:2181,spark2:2181,spark3:2181 $SPARK_DAEMON_JAVA_OPTS"
-
-
-==================================================================
-
-
-http://blog.csdn.net/stark_summer/article/details/48375999
-
-
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cluster/apps/hadoop/lib/native
-export SPARK_LIBRARY_PATH=$SPARK_LIBRARY_PATH:/home/cluster/apps/hadoop/lib/native
-export SPARK_CLASSPATH=$SPARK_CLASSPATH:/home/cluster/apps/hadoop/share/hadoop/yarn/*:/home/cluster/apps/hadoop/share/hadoop/yarn/lib/*:/home/cluster/apps/hadoop/share/hadoop/common/*:/home/cluster/apps/hadoop/share/hadoop/common/lib/*:/home/cluster/apps/hadoop/share/hadoop/hdfs/*:/home/cluster/apps/hadoop/share/hadoop/hdfs/lib/*:/home/cluster/apps/hadoop/share/hadoop/mapreduce/*:/home/cluster/apps/hadoop/share/hadoop/mapreduce/lib/*:/home/cluster/apps/hadoop/share/hadoop/tools/lib/*:/home/cluster/apps/spark/spark-1.4.1/lib/*
+http://blog.csdn.net/u010906369/article/details/52884321
 
 
 
 
-/usr/local/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/
-export SCALA_HOME=/usr/local/scala
-export SPARK_HOME=/usr/local/spark-2.1.1-bin-hadoop2.7
 
-export HADOOP_HOME=/usr/local/hadoop-2.7.3
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_HOME/lib/native/*
-export SPARK_LIBRARY_PATH=$SPARK_LIBRARY_PATH:$HADOOP_HOME/lib/native/*
-export SPARK_CLASSPATH=$SPARK_CLASSPATH:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/tools/lib/*
+
+spark-1.5.0-bin-hadoop2.6
+riak-ts-1.5.2
+scala-2.10.6
+
+apache-maven-3.5.0
 
 
 
 
-:/home/cluster/apps/spark/spark-1.4.1/lib/*
+
+
+
+
+
 
 
 

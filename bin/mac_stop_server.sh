@@ -3,8 +3,8 @@
 
 riak stop
 
-/usr/local/spark-2.1.1-bin-hadoop2.7/sbin/stop-slave.sh
-/usr/local/spark-2.1.1-bin-hadoop2.7/sbin/stop-master.sh
+/usr/local/spark/sbin/stop-slave.sh
+/usr/local/spark/sbin/stop-master.sh
 
 
 
