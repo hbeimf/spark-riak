@@ -10,49 +10,56 @@ riak-ts_1.5.2-1_amd64.deb
 >
 
 =========================================================
+
 /etc/profile
 
 
-SCALA_HOME=/usr/local/scala
-PATH=$SCALA_HOME/bin:$PATH
-export SCALA_HOME PATH
+	SCALA_HOME=/usr/local/scala
+	PATH=$SCALA_HOME/bin:$PATH
+	export SCALA_HOME PATH
 
-SBT_HOME=/usr/local/sbt
-PATH=$SBT_HOME/bin:$PATH
-export SBT_HOME PATH
+	SBT_HOME=/usr/local/sbt
+	PATH=$SBT_HOME/bin:$PATH
+	export SBT_HOME PATH
 
-SPARK_HOME=/usr/local/spark
-PATH=$SPARK_HOME/bin:$PATH
-export SPARK_HOME PATH
+	SPARK_HOME=/usr/local/spark
+	PATH=$SPARK_HOME/bin:$PATH
+	export SPARK_HOME PATH
 
 ===========================================================
+
 启动/停上　riakts
 
-sudo riak start
-sudo riak stop
+	sudo riak start
+	sudo riak stop
 
 ===========================================================
+
 启动本地测试spark:
-/usr/local/spark/sbin/start-master.sh -h 127.0.0.1
-/usr/local/spark/sbin/start-slave.sh spark://127.0.0.1:7077
+
+	/usr/local/spark/sbin/start-master.sh -h 127.0.0.1
+	/usr/local/spark/sbin/start-slave.sh spark://127.0.0.1:7077
 
 停止测试spark:
-/usr/local/spark/sbin/start-slave.sh
-/usr/local/spark/sbin/stop-master.sh
+
+	/usr/local/spark/sbin/start-slave.sh
+	/usr/local/spark/sbin/stop-master.sh
 
 ============================================================
 
 查看master状态
+
 	http://localhost:8080/
 
 ============================================================
-依赖添加查找：
 
-add deps
+sbt 依赖添加查找：
 
-http://mvnrepository.com/
+	add deps
 
-search groupId/artifactId/version
+	http://mvnrepository.com/
+
+	search groupId/artifactId/version
 
 ==============================================================
 
