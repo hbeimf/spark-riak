@@ -1,59 +1,78 @@
+版本:
+/usr/local/
+
+spark -> ./spark-1.5.0-bin-hadoop2.6/
+scala -> ./scala-2.10.6/
+riak-ts_1.5.2-1_amd64.deb
+
+> sbtVersion
+[info] 0.13.11
+>
+
+=========================================================
+/etc/profile
+
+
+SCALA_HOME=/usr/local/scala
+PATH=$SCALA_HOME/bin:$PATH
+export SCALA_HOME PATH
+
+SBT_HOME=/usr/local/sbt
+PATH=$SBT_HOME/bin:$PATH
+export SBT_HOME PATH
+
+SPARK_HOME=/usr/local/spark
+PATH=$SPARK_HOME/bin:$PATH
+export SPARK_HOME PATH
+
+===========================================================
+启动/停上　riakts
+
+sudo riak start
+sudo riak stop
+
+===========================================================
+启动本地测试spark:
+/usr/local/spark/sbin/start-master.sh -h 127.0.0.1
+/usr/local/spark/sbin/start-slave.sh spark://127.0.0.1:7077
+
+停止测试spark:
+/usr/local/spark/sbin/start-slave.sh
+/usr/local/spark/sbin/stop-master.sh
+
+============================================================
+
+查看master状态
+	http://localhost:8080/
+
+============================================================
+依赖添加查找：
+
 add deps
 
 http://mvnrepository.com/
 
 search groupId/artifactId/version
 
-
-打包应用:
-
-	$ sbt package
-	$ ll ./target/scala-2.12/
-
-	print like this
-	/helloWorld$ ll ./target/scala-2.12/
-	drwxrwxr-x 3 xxx xxx 4096  5月 16 13:58 ./
-	drwxrwxr-x 5 xxx xxx 4096  5月 16 13:52 ../
-	drwxrwxr-x 2 xxx xxx  5月 16 13:50 classes/
-	-rw-rw-r-- 1 xxx xxx 1819  5月 16 13:58 helloworld_2.12-0.0.1.jar
+==============================================================
 
 
-启动 spark:
+编绎&打包应用:
 
-	spark-2.1.1-bin-hadoop2.7
+	$ sbt compile
+	$ sbt assembly
 
-	$ ./sbin/start-master.sh -h 127.0.0.1
-	查看master状态
-	http://localhost:8080/
+===============================================================
 
-启动 riak:
+提交任务到spark运行测试：
 
-	riak-ts_1.5.2-1_amd64.deb
-	$ sudo riak start
+	$ bash ./bin/ubuntu_submit.sh
 
+================================================================
+spark-riak-connector 文档：
 
-submit:
+	https://github.com/basho/spark-riak-connector#compatibility
 
-	./bin/spark-submit \
-
-	--class<main-class>
-
-	--master <master-url> \
-
-	--deploy-mode <deploy-mode> \
-
-	--conf<key>=<value> \
-
-	... #other options
-
-	<application-jar> \
-
-	[application-arguments]
+	https://github.com/basho/spark-riak-connector/blob/master/docs/using-connector.md#reading-data-from-kv-bucket
 
 
-
-
-https://segmentfault.com/q/1010000003943723
-
-sbt assembly
-sbt assembly 的使用
