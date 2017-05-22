@@ -1,13 +1,14 @@
-版本:
+安装版本:
+
 /usr/local/
 
-spark -> ./spark-1.5.0-bin-hadoop2.6/
-scala -> ./scala-2.10.6/
-riak-ts_1.5.2-1_amd64.deb
+	spark -> ./spark-1.5.0-bin-hadoop2.6/
+	scala -> ./scala-2.10.6/
+	riak-ts_1.5.2-1_amd64.deb
 
-> sbtVersion
-[info] 0.13.11
->
+	> sbtVersion
+	[info] 0.13.11
+	>
 
 =========================================================
 
